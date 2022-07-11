@@ -1,5 +1,5 @@
 #Author: Matt Williams
-#Version: 06/24/2022
+#Version: 07/11/2022
 
 #Reference: https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d
 from pyparsing import Word
