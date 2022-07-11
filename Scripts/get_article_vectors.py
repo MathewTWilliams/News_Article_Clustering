@@ -39,14 +39,3 @@ def get_combined_train_test_info(model_name):
     test_data, test_labels = get_test_info(model_name)
 
     return pd.concat([training_data, test_data]), pd.concat([training_labels, test_labels])
-
-
-
-
-if __name__ == "__main__":
-    #testing for nan values that were throwing errors
-    data, labels = get_training_info(WordVectorModels.WORD2VEC.value)
-
-    r_index = np.isnan(data)
-    for r in r_index:
-        print(r)
