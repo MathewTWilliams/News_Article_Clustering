@@ -94,7 +94,7 @@ def _find_json_file_name_number(folder):
     folder, then increment that number by 1 and return it '''
 
     if not os.path.exists(folder): 
-        return -1
+        return 1
 
     highest_num = 0
     num_pattern = re.compile(r"[0-9]+\.json")
@@ -119,9 +119,6 @@ def get_result_path(subfolder, file_name):
     '''Get the full file path for the result with the given filename and the given subfolder.'''
 
     return _create_file_path(RESULTS_DIR_PATH, file_name, subfolder=subfolder)
-
-#File Path to the directory where cross validation results are to be stored.
-CV_RESULTS_DIR_PATH = os.path.join(CWD_PATH,"CV_Results")
 
 def convert_categories_to_numbers(labels):
     '''given a pandas series that contains the different categories, convert those 
