@@ -20,7 +20,19 @@ color_dict = {
     "SCIENCE":"blue",
     "WORLD NEWS":"black",
     "TASTE":"orange",
-    "TECH":"gray"
+    "TECH":"gray",
+    #for clustering algorithms that label with integers
+    #key value is based on index in CATEGORIES list 
+    0:"red", 
+    1:"yellow",
+    2:"green",
+    3:"purple",
+    4:"pink", 
+    5:"magenta",
+    6:"blue",
+    7:"black",
+    8:"orange",
+    9:"gray"
 } 
 
    
