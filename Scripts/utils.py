@@ -11,6 +11,9 @@ import re
 # Most of these values are file path related. 
 
 
+RESULT_WORD_VEC_MOD_KEY = "Vector_Model"
+RESULT_CLUSTER_ALGO_KEY = "Clustering"
+
 class Datasets(Enum): 
     TRAIN = "Train"
     TEST = "Test"
@@ -29,18 +32,21 @@ class ClusteringAlgorithms(Enum):
     AFF_PROP = "Affinity Propagation"
     M_SHIFT = "Mean-shift"
     SPECT = "Spectral"
-    W_HIER = "Ward Hierarchical"
     AGGLO = "Agglomerative"
     DBSCAN = "DBSCAN"
     OPTICS = "OPTICS"
-    GAUSS_MIX = "Gaussian Mixtures"
     BIRCH = "BIRCH"
     BI_KMEANS = "Bisecting K-Means"
+    BATCH_KMEANS = "Mini Batch K-Means"
+    SPECT_BI = "Spectral Bi-Clustering"
+    SPECT_CO = "Spectral Co-Clustering"
 
 
     @classmethod
     def get_values_as_list(cls): 
-        return [model.value for model in ClusteringAlgorithms]
+        return [model.value for model in ClusteringAlgorithms if model not in \
+                [ClusteringAlgorithms.SPECT_BI, ClusteringAlgorithms.SPECT_BI, \
+                ClusteringAlgorithms.BIRCH, ClusteringAlgorithms.DBSCAN]]
 
 class Categories(Enum): 
     MEDIA = "MEDIA"
@@ -135,3 +141,9 @@ def convert_categories_to_numbers(labels):
     return labels
 
 RESULT_VISUALS_DIR_PATH = os.path.join(CWD_PATH, "Visuals")
+CLUSTERING_VISUALS_DIR_PATH = os.path.join(RESULT_VISUALS_DIR_PATH, "Clusterings")
+
+
+
+def get_clustering_visual_file_path(file_name): 
+    return _create_file_path(RESULT_VISUALS_DIR_PATH, file_name, subfolder=CLUSTERING_VISUALS_DIR_PATH)

@@ -2,9 +2,9 @@
 #Version: 07/11/2022
 
 #Reference: https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d
-from pyparsing import Word
+from sklearn import cluster
 from get_article_vectors import get_combined_train_test_info
-from utils import WordVectorModels
+from utils import WordVectorModels, get_clustering_visual_file_path
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 
@@ -38,14 +38,21 @@ color_dict = {
    
 
 
-def visualize_article_vecs(vec_model_name, n_components, labels = []): 
+def visualize_article_vecs(vec_model_name, n_components, clustering = "Ground Truth", labels = []): 
     '''Given a vector model name, the number of axes to project to, and the\ prediction labels (optional), 
     use T-SNE to visualized the article vectors with the given labels. If labels is left as an empty list, 
     then we are just visualizing the article vectors and their real labels'''
 
     rand_state = 42
+
     if n_components < 2 or n_components > 3: 
         return
+
+    additional_text = ""
+    if n_components == 3: 
+        additional_text = "3d"
+
+
 
     if  len(labels) == 0: 
         data, labels = get_combined_train_test_info(vec_model_name)
@@ -73,7 +80,9 @@ def visualize_article_vecs(vec_model_name, n_components, labels = []):
             y = value[1]
             ax.scatter(x,y, color=color_dict[labels.iat[i]])
 
-    plt.show()
+    title = "{}_with_{}_{}.png".format(clustering, vec_model_name, additional_text)
+
+    plt.savefig(get_clustering_visual_file_path(title))
 
 
 
