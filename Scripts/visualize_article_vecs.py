@@ -7,7 +7,7 @@ from get_article_vectors import get_combined_train_test_info
 from utils import WordVectorModels, get_clustering_visual_file_path
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
-
+import os
 
 
 color_dict = {
@@ -80,7 +80,12 @@ def visualize_article_vecs(vec_model_name, n_components, clustering = "Ground Tr
             y = value[1]
             ax.scatter(x,y, color=color_dict[labels.iat[i]])
 
-    title = "{}_with_{}_{}.png".format(clustering, vec_model_name, additional_text)
+    title = ""
+
+    if additional_text != "": 
+        title = "{}_with_{}_{}.png".format(clustering, vec_model_name, additional_text)
+    else: 
+        title = "{}_with_{}.png".format(clustering, vec_model_name)
 
     plt.savefig(get_clustering_visual_file_path(title))
 
