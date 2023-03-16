@@ -46,7 +46,9 @@ class ClusteringAlgorithms(Enum):
     def get_values_as_list(cls): 
         return [model.value for model in ClusteringAlgorithms if model not in \
                 [ClusteringAlgorithms.SPECT_BI, ClusteringAlgorithms.SPECT_BI, \
-                ClusteringAlgorithms.BIRCH, ClusteringAlgorithms.DBSCAN]]
+                ClusteringAlgorithms.BIRCH, ClusteringAlgorithms.DBSCAN, 
+                ClusteringAlgorithms.AFF_PROP, ClusteringAlgorithms.M_SHIFT, 
+                ClusteringAlgorithms.OPTICS]]
 
 class Categories(Enum): 
     MEDIA = "MEDIA"
